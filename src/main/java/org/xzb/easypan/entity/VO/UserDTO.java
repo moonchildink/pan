@@ -7,12 +7,12 @@ import lombok.experimental.Accessors;
 import java.util.Date;
 
 /**
- * 将基础用户信息返回给前端
+ * 该数据用于返回前端
  */
 
 @Data
 @Accessors(chain = true)
-public class UserVO {
+public class UserDTO {
 
     private String userId;
 
@@ -22,11 +22,7 @@ public class UserVO {
     private String email;
 
     private String qqAvatar;
-
-
     private Date joinTime;
-
-
     private Date lastLoginTime;
 
     /**

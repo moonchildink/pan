@@ -1,16 +1,15 @@
 package org.xzb.easypan.utils;
 
-import org.xzb.easypan.entity.DTO.UserDTO;
-import org.xzb.easypan.entity.VO.UserVO;
+import org.xzb.easypan.entity.VO.UserDTO;
 
 public class UserHolder {
-    private static final ThreadLocal<UserVO> tl = new ThreadLocal<>();
+    private static final ThreadLocal<UserDTO> tl = new ThreadLocal<>();
 
-    public static void saveUser(UserVO user) {
+    public static void saveUser(UserDTO user) {
         tl.set(user);
     }
 
-    public static UserVO getUser() {
+    public static UserDTO getUser() {
         return tl.get();
     }
 

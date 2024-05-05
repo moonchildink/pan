@@ -1,9 +1,11 @@
 package org.xzb.easypan.controller;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.xzb.easypan.entity.DTO.EmailDTO;
+import org.xzb.easypan.entity.DTO.LoginFromDTO;
 import org.xzb.easypan.entity.DTO.Result;
-import org.xzb.easypan.entity.DTO.UserDTO;
+import org.xzb.easypan.entity.DTO.RegisterFormDTO;
 import org.xzb.easypan.service.impl.UserInfoServiceImpl;
 import org.xzb.easypan.utils.CreateImageCode;
 import org.xzb.easypan.utils.SystemConstants;
@@ -45,12 +47,32 @@ public class AccountController {
     }
 
     /**
-     *
-     * @param userDTO
+     * @param registerFormDTO
      * @return
      */
     @PostMapping("register")
-    public Result register(@Valid UserDTO userDTO) {
-        return userInfoService.register(userDTO);
+    public Result register(@Valid RegisterFormDTO registerFormDTO, HttpSession session) {
+        return userInfoService.register(registerFormDTO, session);
+    }
+
+    @PostMapping("/login")
+    public Result login(@Valid LoginFromDTO loginFromDTO, HttpSession session) {
+        return userInfoService.login(loginFromDTO, session);
+    }
+
+
+    @PostMapping("/updateUserAvatar")
+    public Result updateUserAvatar(MultipartFile avatar) {
+        return userInfoService.updateUserAvatar(avatar);
+    }
+
+    @PostMapping("/updatePassword")
+    public Result updateUserPassword(String password) {
+        return userInfoService.updateUserPassword(password);
+    }
+
+    @PostMapping("/logout")
+    public Result logout() {
+        return userInfoService.logout();
     }
 }
